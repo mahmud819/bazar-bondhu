@@ -24,7 +24,7 @@ const Navbar = () => {
   </>)
   return (
     <div>
-      <div className="navbar sticky top-0 z-50 bg-gradient-to-r from-blue/65 via-sky-700/20 to-transparent shadow-sm">
+      <div className="navbar fixed w-full shadow-sm  backdrop-blur-md  top-0 z-50 bg-gradient-to-r from-blue/65 via-sky-700/20 to-transparent ">
         {/* navbar start */}
 
         <div className="navbar-start">
