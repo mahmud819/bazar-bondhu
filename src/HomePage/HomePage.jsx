@@ -14,6 +14,10 @@ import heroLogo from "../assets/Logo/heroLogo.png";
 import logoImage from "../assets/Logo/logo.png";
 // import backgroundImg from '../assets/Logo/heroBackground.png'
 import backgroundImg from '../assets/Images/heroBackgroun.png'
+import OurServices from "./home/OurServices";
+import HowItWorks from "./home/HowItWorks";
+import WhyChooseUs from "./home/WhyChooseUs";
+import OrderCallToAction from "./home/OrderCallToAction";
 
 const features = [
   {
@@ -54,7 +58,10 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-sky-100">
+   <div>
+    {/* main home page */}
+    <div>
+       <main className="relative min-h-screen overflow-hidden bg-sky-100">
       {/* Background image */}
       <div
         className="absolute inset-0 z-0  bg-cover bg-center bg-no-repeat opacity-90"
@@ -184,6 +191,29 @@ export default function Home() {
       <Link to="/place-order" className="sr-only">
         Place an order
       </Link>
+      
     </main>
+    </div>
+
+    {/* our services section */}
+    <div>
+      <OurServices></OurServices>
+    </div>
+
+    {/* how it works section */}
+    <div>
+      <HowItWorks></HowItWorks>
+    </div>
+
+    {/* why you chose this bazarBondhu section */}
+    <div>
+      <WhyChooseUs></WhyChooseUs>
+    </div>
+    {/* oder call to action section */}
+    <div>
+      <OrderCallToAction></OrderCallToAction>
+    </div>
+   </div>
+    
   );
 }
