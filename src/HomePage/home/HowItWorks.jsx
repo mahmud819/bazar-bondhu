@@ -1,4 +1,5 @@
 import { ClipboardList, Store, Bike, ArrowRight } from "lucide-react";
+import SharedTitle from "../../SharedComponents/SharedTitle/SharedTitle";
 
 const steps = [
   {
@@ -26,9 +27,10 @@ export default function HowItWorks() {
     <section id="how-it-works" className="bg-sky-50/70 px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto mb-12 max-w-2xl text-center">
-          <span className="inline-flex rounded-full bg-green-100 px-4 py-1.5 text-sm font-bold text-green-800">
+          {/* <span className="inline-flex rounded-full bg-green-100 px-4 py-1.5 text-sm font-bold text-green-800">
             How It Works
-          </span>
+          </span> */}
+          <SharedTitle title={"How It Works"}></SharedTitle>
           <h2 className="mt-4 text-3xl font-extrabold text-slate-900 sm:text-4xl">
             মাত্র ৩টি ধাপে অর্ডার করুন
           </h2>
