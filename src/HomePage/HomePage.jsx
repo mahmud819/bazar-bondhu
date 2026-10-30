@@ -18,6 +18,7 @@ import OurServices from "./home/OurServices";
 import HowItWorks from "./home/HowItWorks";
 import WhyChooseUs from "./home/WhyChooseUs";
 import OrderCallToAction from "./home/OrderCallToAction";
+import SharedTitle from "../SharedComponents/SharedTitle/SharedTitle";
 
 const features = [
   {

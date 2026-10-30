@@ -1,4 +1,5 @@
 import { ShoppingBasket, Wheat, SprayCan, HeartPulse, MoreHorizontal } from "lucide-react";
+import SharedTitle from "../../SharedComponents/SharedTitle/SharedTitle";
 
 const services = [
   {
@@ -35,14 +36,15 @@ const services = [
 
 export default function OurServices() {
   return (
-    <section id="services" className="px-4 py-16 sm:px-6 lg:px-8">
+    <section id="services" className="px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto mb-10 max-w-2xl text-center">
-          <span className="inline-flex rounded-full bg-green-100 px-4 py-1.5 text-sm font-bold text-green-800">
-            Our Services
-          </span>
+          {/* <span className="inline-flex rounded-full bg-green-100 px-4 py-1.5 text-sm font-bold text-green-800">
+            
+          </span> */}
+          <SharedTitle title={'Our Services'}></SharedTitle>
           <h2 className="mt-4 text-3xl font-extrabold text-slate-900 sm:text-4xl">
-            আমাদের সেবা সমূহ
+            আমাদের <span className="text-green-800">সেবা সমূহ</span>
           </h2>
           <p className="mt-3 text-slate-600">
             আপনার দৈনন্দিন বাজার এখন আরও সহজ—সবকিছু এক জায়গায়।
