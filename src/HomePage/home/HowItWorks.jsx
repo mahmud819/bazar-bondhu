@@ -14,8 +14,8 @@ export default function HowItWorks() {
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto mb-12 max-w-2xl text-center">
           <SharedTitle title={"How It Works"}></SharedTitle>
-          <h2 className="mt-4 text-3xl font-extrabold text-slate-900 sm:text-4xl">
-            মাত্র ৩টি ধাপে অর্ডার করুন
+          <h2 className="mt-4 text-3xl font-extrabold text-slate-900 sm:text-4xl"><span className="text-green-700">মাত্র ৩টি</span>
+             ধাপে অর্ডার করুন
           </h2>
           <p className="mt-3 text-slate-600">
             সহজ অর্ডার, নির্ভরযোগ্য কেনাকাটা, সুবিধাজনক ডেলিভারি।

@@ -66,7 +66,7 @@ export default function OurServices() {
           {services.map(({ title, description, image, tint }) => (
             <article
               key={title}
-              className="rounded-3xl border border-green-100 bg-white p-2 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              className="rounded-3xl border border-green-300 bg-white p-2 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
             >
               <div
                 className={`mx-auto flex items-center justify-center rounded-2xl ${tint}`}

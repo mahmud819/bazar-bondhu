@@ -19,6 +19,7 @@ import HowItWorks from "./home/HowItWorks";
 import WhyChooseUs from "./home/WhyChooseUs";
 import OrderCallToAction from "./home/OrderCallToAction";
 import SharedTitle from "../SharedComponents/SharedTitle/SharedTitle";
+import Reviews from "./home/Reviews";
 
 const features = [
   {
@@ -89,7 +90,7 @@ export default function Home() {
               <img src={heroLogo} alt="" />
             </div>
             <div>
-              <h1 className="text-4xl font-extrabold leading-tight text-green-700 sm:text-3xl lg:text-4xl">
+              <h1 className="text-4xl font-bold leading-tight text-green-700 sm:text-3xl lg:text-4xl">
                 বাজার<span className="text-blue-700">বন্ধু</span>
               </h1>
               <h2 className="mt-1 text-2xl font-extrabold text-blue-800 sm:text-3xl">
@@ -210,6 +211,12 @@ export default function Home() {
     <div>
       <WhyChooseUs></WhyChooseUs>
     </div>
+
+    {/* customer reviews section */}
+    <div>
+      <Reviews></Reviews>
+    </div>
+
     {/* oder call to action section */}
     <div>
       <OrderCallToAction></OrderCallToAction>
