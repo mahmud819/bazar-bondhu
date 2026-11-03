@@ -22,7 +22,7 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="flex items-center">
+        <div className="flex flex-col items-center lg:flex-row">
           {/* div of fisrt step of ordering */}
             <div className=" flex  lg:w-[30%] ">
               <div className="w-[60%] my-auto">
