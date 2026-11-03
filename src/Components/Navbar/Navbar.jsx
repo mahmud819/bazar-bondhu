@@ -21,7 +21,7 @@ const Navbar = () => {
     <li><Link to='/order'><RiShoppingBag4Fill className="text-blue-800 text-xl"/>Order</Link></li>
     <li><Link to='/trackOrder'><MdShoppingCart className="text-blue-800 text-xl"/>Track Order</Link></li>
     {/* <li><Link to='/about'> <Info className="text-blue-800 text-xl"/>About</Link></li> */}
-    <li><Link><FaPhoneAlt className="text-blue-800 text-xl"/>Contact</Link></li>
+    <li><Link to='/contact'><FaPhoneAlt className="text-blue-800 text-xl"/>Contact</Link></li>
   
   </>)
   return (

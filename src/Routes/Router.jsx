@@ -4,6 +4,7 @@ import MainLayout from '../MainLayout/MainLayout.jsx';
 import HomePage from '../HomePage/HomePage.jsx';
 import PlaceOrder from '../Components/PlaceOrder/PlaceOrder.jsx';
 import TrackOrder from '../Pages/TrackOrder/TrackOrder.jsx';
+import Contact from '../Pages/Contact/Contact.jsx';
 
 function Router() {
   return (
@@ -12,6 +13,7 @@ function Router() {
         <Route index element={<HomePage />} />
         <Route path='/order' element = {<PlaceOrder></PlaceOrder>} />
         <Route path='/trackOrder' element={<TrackOrder></TrackOrder>} />
+        <Route path='/contact' element={<Contact></Contact>} />
       </Route>
     </Routes>
   );
