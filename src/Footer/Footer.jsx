@@ -14,14 +14,14 @@ import logoImg from '../assets/Logo/logo.png'
 
 const quickLinks = [
   { name: "Home", path: "/" },
-  { name: "About Us", path: "/about" },
-  { name: "Track Order", path: "/track-order" },
+  { name: "About Us", path: "/aboutUs" },
+  { name: "Track Order", path: "/trackOrder" },
   { name: "Contact Us", path: "/contact" },
 ];
 
 const customerLinks = [
   { name: "My Account", path: "/login" },
-  { name: "Place an Order", path: "/place-order" },
+  { name: "Place an Order", path: "/order" },
   { name: "My Orders", path: "/dashboard/my-orders" },
   { name: "Help & Support", path: "/contact" },
 ];

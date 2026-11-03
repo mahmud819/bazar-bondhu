@@ -5,6 +5,7 @@ import HomePage from '../HomePage/HomePage.jsx';
 import PlaceOrder from '../Components/PlaceOrder/PlaceOrder.jsx';
 import TrackOrder from '../Pages/TrackOrder/TrackOrder.jsx';
 import Contact from '../Pages/Contact/Contact.jsx';
+import About from '../Pages/About Us/AboutUs.jsx';
 
 function Router() {
   return (
@@ -14,6 +15,7 @@ function Router() {
         <Route path='/order' element = {<PlaceOrder></PlaceOrder>} />
         <Route path='/trackOrder' element={<TrackOrder></TrackOrder>} />
         <Route path='/contact' element={<Contact></Contact>} />
+        <Route path='/aboutUs' element={<About></About>} />
       </Route>
     </Routes>
   );
