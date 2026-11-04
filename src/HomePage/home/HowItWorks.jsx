@@ -4,6 +4,7 @@ import AddMore from "../../assets/Logo/AddMore.png";
 import OrderPhone from "../../assets/Logo/OrderPhone.png";
 import Stall from "../../assets/Logo/Stall.png";
 import { FaGreaterThan } from "react-icons/fa";
+import DeleveryManImg from '../../assets/Images/deliveryManWithBike.png'
 
 export default function HowItWorks() {
   return (
@@ -58,7 +59,7 @@ export default function HowItWorks() {
                 <p className="text-sm pt-1 text-slate-600">আপনার ঠিকানায় পণ্য পৌঁছে দেওয়া হবে।</p>
               </div>
               <div className="w-[40%]">
-                <img className="w-full" src={OrderPhone} alt="phone photo" />
+                <img className="w-full" src={DeleveryManImg} alt="phone photo" />
               </div>
             </div>
         </div>

@@ -10,18 +10,18 @@ import { RiShoppingBag4Fill } from "react-icons/ri";
 const Navbar = () => {
 
    const navLinkClass = ({ isActive }) =>
-    `transition-colors hover:text-green-600 ${
-      isActive ? "text-green-600 font-semibold" : "text-gray-700"
+    `transition-colors hover:text-green-600 rounded-full ${
+      isActive ? "text-white bg-green-700 font-bold rounded-full" : "text-gray-700"
     }`;
 
 
   const menuItem = (<>
 
-    <li><Link to='/'><FaHome  className="text-blue-800 font-extrabold text-xl" />Home</Link></li>
-    <li><Link to='/order'><RiShoppingBag4Fill className="text-blue-800 text-xl"/>Order</Link></li>
-    <li><Link to='/trackOrder'><MdShoppingCart className="text-blue-800 text-xl"/>Track Order</Link></li>
-    {/* <li><Link to='/about'> <Info className="text-blue-800 text-xl"/>About</Link></li> */}
-    <li><Link to='/contact'><FaPhoneAlt className="text-blue-800 text-xl"/>Contact</Link></li>
+    <li className=""><NavLink className={navLinkClass} to='/'><FaHome  className="text-blue-800 font-extrabold text-xl navLinkClass" />Home</NavLink></li>
+    <li><NavLink className={navLinkClass} to='/order'><RiShoppingBag4Fill className="text-blue-800 text-xl "/>Order</NavLink></li>
+    <li><NavLink className={navLinkClass} to='/trackOrder'><MdShoppingCart className="text-blue-800 text-xl"/>Track Order</NavLink></li>
+    {/* <li><NavLink to='/about'> <Info className="text-blue-800 text-xl"/>About</NavLink></li> */}
+    <li><NavLink className={navLinkClass} to='/contact'><FaPhoneAlt className="text-blue-800 text-xl"/>Contact</NavLink></li>
   
   </>)
   return (
@@ -73,8 +73,8 @@ const Navbar = () => {
         {/* navbar end */}
 
         <div className="navbar-end  gap-x-1 lg:gap-x-2 ">
-          <Link className="btn   rounded-full bg-white text-blue-800 text-sm lg:text-lg"><FaUser className="text-sm lg:text-2xl" />Login</Link>
-          <Link className="btn lg:btn text-blue-800 rounded-full bg-white text-sm lg:text-lg"><FaUserPlus className="text-sm lg:text-2xl"/>Sign Up</Link>
+          <Link to='/signIn' className="btn   rounded-full bg-white text-blue-800 text-sm lg:text-lg"><FaUser className="text-sm lg:text-2xl" />Login</Link>
+          <Link to='/signUp' className="btn lg:btn text-blue-800 rounded-full bg-white text-sm lg:text-lg"><FaUserPlus className="text-sm lg:text-2xl"/>Sign Up</Link>
         </div>
       </div>
     </div>
