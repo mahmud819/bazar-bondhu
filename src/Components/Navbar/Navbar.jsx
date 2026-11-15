@@ -11,7 +11,7 @@ const Navbar = () => {
 
    const navLinkClass = ({ isActive }) =>
     `transition-colors hover:text-green-600 rounded-full ${
-      isActive ? "text-white bg-green-700 font-bold rounded-full" : "text-gray-700"
+      isActive ? "text-white bg-green-700 font-bold rounded-full" : "text-blue-800 font-semibold"
     }`;
 
 
@@ -22,6 +22,7 @@ const Navbar = () => {
     <li><NavLink className={navLinkClass} to='/trackOrder'><MdShoppingCart className="text-blue-800 text-xl"/>Track Order</NavLink></li>
     {/* <li><NavLink to='/about'> <Info className="text-blue-800 text-xl"/>About</NavLink></li> */}
     <li><NavLink className={navLinkClass} to='/contact'><FaPhoneAlt className="text-blue-800 text-xl"/>Contact</NavLink></li>
+    <li><NavLink className={navLinkClass} to='/dashBoard'><FaPhoneAlt className="text-blue-800 text-xl"/>Dashboard</NavLink></li>
   
   </>)
   return (
@@ -64,7 +65,7 @@ const Navbar = () => {
         {/* navbar center */}
 
         <div className="navbar-center hidden lg:flex ">
-          <ul className="menu menu-horizontal px-2 text-lg rounded-full bg-white py-0">
+          <ul className="menu menu-horizontal px-2 text-lg   py-0">
             
             {menuItem}
           </ul>
@@ -72,9 +73,13 @@ const Navbar = () => {
 
         {/* navbar end */}
 
-        <div className="navbar-end  gap-x-1 lg:gap-x-2 ">
-          <Link to='/signIn' className="btn   rounded-full bg-white text-blue-800 text-sm lg:text-lg"><FaUser className="text-sm lg:text-2xl" />Login</Link>
-          <Link to='/signUp' className="btn lg:btn text-blue-800 rounded-full bg-white text-sm lg:text-lg"><FaUserPlus className="text-sm lg:text-2xl"/>Sign Up</Link>
+        <div className="navbar-end  gap-x-1 lg:gap-x-1 ">
+          {/* for bg device */}
+          <Link to='/signIn' className="btn rounded-full  text-blue-800 text-sm lg:text-lg"><FaUser className="text-sm lg:text-xl" />Login</Link>
+
+          {/* for small device */}
+          {/* <Link to='/signIn' className="block lg:hidden btn btn-sm  rounded-full bg-white text-blue-800 text-sm lg:text-lg"><FaUser className="text-sm lg:text-2xl" />Login</Link> */}
+          <Link to='/signUp' className="btn lg:btn text-blue-800 rounded-full bg-white text-sm lg:text-lg"><FaUserPlus className="text-sm lg:text-xl"/>Sign Up</Link>
         </div>
       </div>
     </div>
