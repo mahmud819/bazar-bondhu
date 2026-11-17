@@ -6,6 +6,7 @@ import { MdOutlineShoppingCart, MdShoppingCart } from "react-icons/md";
 import { Info } from "lucide-react";
 import { FaHome, FaJediOrder, FaPhone, FaPhoneAlt, FaUser, FaUserPlus } from "react-icons/fa";
 import { RiShoppingBag4Fill } from "react-icons/ri";
+import useAuth from "../../Hooks/CustomHooks/UseAuth/useAuth";
 
 const Navbar = () => {
 
@@ -13,6 +14,9 @@ const Navbar = () => {
     `transition-colors hover:text-green-600 rounded-full ${
       isActive ? "text-white bg-green-700 font-bold rounded-full" : "text-blue-800 font-semibold"
     }`;
+
+    const {user} = useAuth();
+    console.log(user.email);
 
 
   const menuItem = (<>

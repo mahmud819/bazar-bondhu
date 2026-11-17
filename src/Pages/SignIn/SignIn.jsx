@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   UserRound,
@@ -11,6 +11,8 @@ import {
   LogIn,
 } from "lucide-react";
 import groceryBag from '../../assets/Images/FreshGroceryBag.png'
+import useAuth from "../../Hooks/CustomHooks/UseAuth/useAuth";
+import Swal from "sweetalert2";
 
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,6 +24,11 @@ function SignIn() {
   });
 
   const [message, setMessage] = useState("");
+
+  // auth context
+  const {signInUser} = useAuth();
+
+  const navigate = useNavigate();
 
   // Handle input changes
   const handleChange = (e) => {
@@ -38,12 +45,32 @@ function SignIn() {
   // Handle login submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    const form = e.target
 
-    console.log("Login Data:", formData);
+    signInUser(formData.email,formData.password)
+    .then(res=>{
+      console.log(res)
+      Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Login In Successful.",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                form.reset();
+                navigate('/');
+                
+    })
+    .catch(err=>{
+      console.log(err,err.message)
+      setMessage(err)
+    })
 
-    setMessage(
-      "Login form submitted. Connect your authentication API to continue."
-    );
+    console.log("Login Data:", formData,formData.email,formData.password)
+
+    // setMessage(
+    //   "Login form submitted. Connect your authentication API to continue."
+    // );
   };
 
   return (
