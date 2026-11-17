@@ -1,34 +1,84 @@
 import React from "react";
-import LogoImage from '../../assets/Logo/logo.png'
+import LogoImage from "../../assets/Logo/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineShoppingCart, MdShoppingCart } from "react-icons/md";
 import { Info } from "lucide-react";
-import { FaHome, FaJediOrder, FaPhone, FaPhoneAlt, FaUser, FaUserPlus } from "react-icons/fa";
+import {
+  FaHome,
+  FaJediOrder,
+  FaPhone,
+  FaPhoneAlt,
+  FaUser,
+  FaUserPlus,
+} from "react-icons/fa";
 import { RiShoppingBag4Fill } from "react-icons/ri";
 import useAuth from "../../Hooks/CustomHooks/UseAuth/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-
-   const navLinkClass = ({ isActive }) =>
+  const navLinkClass = ({ isActive }) =>
     `transition-colors hover:text-green-600 rounded-full ${
-      isActive ? "text-white bg-green-700 font-bold rounded-full" : "text-blue-800 font-semibold"
+      isActive
+        ? "text-white bg-green-700 font-bold rounded-full"
+        : "text-blue-800 font-semibold"
     }`;
 
-    const {user} = useAuth();
-    console.log(user.email);
+  const { user, userLogOut } = useAuth();
+  console.log(user?.email);
 
-
-  const menuItem = (<>
-
-    <li className=""><NavLink className={navLinkClass} to='/'><FaHome  className="text-blue-800 font-extrabold text-xl navLinkClass" />Home</NavLink></li>
-    <li><NavLink className={navLinkClass} to='/order'><RiShoppingBag4Fill className="text-blue-800 text-xl "/>Order</NavLink></li>
-    <li><NavLink className={navLinkClass} to='/trackOrder'><MdShoppingCart className="text-blue-800 text-xl"/>Track Order</NavLink></li>
-    {/* <li><NavLink to='/about'> <Info className="text-blue-800 text-xl"/>About</NavLink></li> */}
-    <li><NavLink className={navLinkClass} to='/contact'><FaPhoneAlt className="text-blue-800 text-xl"/>Contact</NavLink></li>
-    <li><NavLink className={navLinkClass} to='/dashBoard'><FaPhoneAlt className="text-blue-800 text-xl"/>Dashboard</NavLink></li>
-  
-  </>)
+  const menuItem = (
+    <>
+      <li className="">
+        <NavLink className={navLinkClass} to="/">
+          <FaHome className="text-blue-800 font-extrabold text-xl navLinkClass" />
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink className={navLinkClass} to="/order">
+          <RiShoppingBag4Fill className="text-blue-800 text-xl " />
+          Order
+        </NavLink>
+      </li>
+      <li>
+        <NavLink className={navLinkClass} to="/trackOrder">
+          <MdShoppingCart className="text-blue-800 text-xl" />
+          Track Order
+        </NavLink>
+      </li>
+      {/* <li><NavLink to='/about'> <Info className="text-blue-800 text-xl"/>About</NavLink></li> */}
+      <li>
+        <NavLink className={navLinkClass} to="/contact">
+          <FaPhoneAlt className="text-blue-800 text-xl" />
+          Contact
+        </NavLink>
+      </li>
+      <li>
+        <NavLink className={navLinkClass} to="/dashBoard">
+          <FaPhoneAlt className="text-blue-800 text-xl" />
+          Dashboard
+        </NavLink>
+      </li>
+    </>
+  );
+  const handleLogout = () => {
+    userLogOut()
+      .then((res) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Logout Successful.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        console.log(res, "logout from navbar");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log("handle log out working");
+  };
   return (
     <div>
       <div className="navbar fixed w-full shadow-sm  backdrop-blur-md  top-0 z-50 bg-gradient-to-r from-blue/65 via-sky-700/20 to-transparent ">
@@ -58,8 +108,7 @@ const Navbar = () => {
               tabIndex={-1}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
-             
-             {menuItem}
+              {menuItem}
             </ul>
           </div>
           <div className="btn-ghost text-xl w-[60%] lg:w-[50%]">
@@ -70,7 +119,6 @@ const Navbar = () => {
 
         <div className="navbar-center hidden lg:flex ">
           <ul className="menu menu-horizontal px-2 text-lg   py-0">
-            
             {menuItem}
           </ul>
         </div>
@@ -79,11 +127,35 @@ const Navbar = () => {
 
         <div className="navbar-end  gap-x-1 lg:gap-x-1 ">
           {/* for bg device */}
-          <Link to='/signIn' className="btn rounded-full  text-blue-800 text-sm lg:text-lg"><FaUser className="text-sm lg:text-xl" />Login</Link>
-
-          {/* for small device */}
-          {/* <Link to='/signIn' className="block lg:hidden btn btn-sm  rounded-full bg-white text-blue-800 text-sm lg:text-lg"><FaUser className="text-sm lg:text-2xl" />Login</Link> */}
-          <Link to='/signUp' className="btn lg:btn text-blue-800 rounded-full bg-white text-sm lg:text-lg"><FaUserPlus className="text-sm lg:text-xl"/>Sign Up</Link>
+          {user?.email ? (
+            // log out button
+            <div>
+              <button
+                onClick={handleLogout}
+                className="btn rounded-full  text-blue-800 text-sm lg:text-lg"
+              >
+                <FaUser className="text-sm lg:text-xl" />
+                Log Out
+              </button>
+            </div>
+          ) : (
+            <>
+              <Link
+                to="/signIn"
+                className="btn rounded-full  text-blue-800 text-sm lg:text-lg"
+              >
+                <FaUser className="text-sm lg:text-xl" />
+                Login
+              </Link>
+              <Link
+                to="/signUp"
+                className="btn lg:btn text-blue-800 rounded-full bg-white text-sm lg:text-lg"
+              >
+                <FaUserPlus className="text-sm lg:text-xl" />
+                Sign Up
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>
