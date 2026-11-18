@@ -13,6 +13,7 @@ import {
 import groceryBag from "../../assets/Images/FreshGroceryBag.png";
 import useAuth from "../../Hooks/CustomHooks/UseAuth/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/CustomHooks/UseAxiosPublic/useAxiosPublic";
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +33,10 @@ function SignUp() {
   const navigate = useNavigate();
 
   // signUp function
-  const { createUser } = useAuth();
+  const { createUser,userProfileUpdate } = useAuth();
+
+  // axios instance
+  const axiosPublic = useAxiosPublic();
 
   // Handle input changes
   const handleChange = (e) => {
@@ -77,6 +81,7 @@ function SignUp() {
       phone: formData.phone,
       email: formData.email,
       password: formData.password,
+      role: 'admin'
     };
 
     createUser(formData.email, formData.password)
@@ -89,6 +94,25 @@ function SignUp() {
             showConfirmButton: false,
             timer: 1500,
           });
+          userProfileUpdate(formData.name,formData.phone)
+          .then(()=>{
+            console.log('user profile updated successful')
+          })
+          .catch(err=>{
+            console.log(err);
+            setMessage(err?.message);
+          })
+
+          // User information send to database
+          axiosPublic.post('/users',registrationData)
+          .then(res=>{
+            console.log(res.data)
+          })
+          .catch(error=>{
+            console.log(error)
+          })
+
+          // form data reset
           setFormData({
             name: "",
             phone: "",
