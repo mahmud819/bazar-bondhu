@@ -86,7 +86,7 @@ function SignUp() {
 
     createUser(formData.email, formData.password)
       .then((res) => {
-        
+        console.log(res)
           Swal.fire({
             position: "top-end",
             icon: "success",

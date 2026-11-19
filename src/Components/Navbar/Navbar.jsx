@@ -15,6 +15,7 @@ import {
 import { RiShoppingBag4Fill } from "react-icons/ri";
 import useAuth from "../../Hooks/CustomHooks/UseAuth/useAuth";
 import Swal from "sweetalert2";
+import useUser from "../../Hooks/CustomHooks/UseUser/useUser";
 
 const Navbar = () => {
   const navLinkClass = ({ isActive }) =>
@@ -26,6 +27,8 @@ const Navbar = () => {
 
   const { user, userLogOut } = useAuth();
   console.log(user?.email);
+  const {userInfo} = useUser();
+  console.log(userInfo);
 
   const menuItem = (
     <>

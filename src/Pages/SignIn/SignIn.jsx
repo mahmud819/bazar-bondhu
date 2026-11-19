@@ -26,7 +26,7 @@ function SignIn() {
   const [message, setMessage] = useState("");
 
   // auth context
-  const {signInUser} = useAuth();
+  const {signInUser,setUser} = useAuth();
 
   const navigate = useNavigate();
 
@@ -49,7 +49,8 @@ function SignIn() {
 
     signInUser(formData.email,formData.password)
     .then(res=>{
-      console.log(res)
+      // setUser(res?.user?.email);
+      console.log(res,res?.user.email)
       Swal.fire({
                   position: "top-end",
                   icon: "success",
@@ -66,7 +67,7 @@ function SignIn() {
       setMessage(err)
     })
 
-    console.log("Login Data:", formData,formData.email,formData.password)
+    // console.log("Login Data:", formData,formData.email,formData.password)
 
     // setMessage(
     //   "Login form submitted. Connect your authentication API to continue."
