@@ -15,25 +15,27 @@ import CustomerDashBoard from "../DashBoard/CustomerDashBoard/CustomerDashBoard.
 import AdminDashBoard from "../DashBoard/AdminDashBoard/AdminDashBoard.jsx";
 import DeliveryManDashBoard from "../DashBoard/DeliveryManDashBoard/DeliveryManDashBoard.jsx";
 import useUser from "../Hooks/CustomHooks/UseUser/useUser.jsx";
+import DashboardRedirect from "../DashBoard/DashboardRedirect/DashboardRedirect.jsx";
+import CustomerProtectedRoute from "./RoleProtectedRoute/CustomerProtectedRoute/CustomerProtectedRoute.jsx";
+import AdminProtectedRoute from "./RoleProtectedRoute/AdminProtectedRoute/AdminProtectedRoute.jsx";
+import DeliverymanProtectedRoute from "./RoleProtectedRoute/DeliverymanProtectedRoute/DeliverymanProtectedRoute.jsx";
+import AdminHome from "../DashBoard/AdminDashBoard/AdminPages/AdminHome/AdminHome.jsx";
+import ManageProducts from "../DashBoard/AdminDashBoard/AdminPages/ManageProducts/ManageProducts.jsx";
+import ManageOrders from "../DashBoard/AdminDashBoard/AdminPages/ManageOrders/ManageOrders.jsx";
+import ManageUsers from "../DashBoard/AdminDashBoard/AdminPages/ManageUsers/ManageUsers.jsx";
+import ManageDelivery from "../DashBoard/AdminDashBoard/AdminPages/ManageDelivery/ManageDelivery.jsx";
+import Reports from "../DashBoard/AdminDashBoard/AdminPages/Reports/Reports.jsx";
+import Setting from "../DashBoard/AdminDashBoard/AdminPages/Setting/Setting.jsx";
+import CustomerHome from "../DashBoard/CustomerDashBoard/CustomerPages/CustomerHome/CustomerHome.jsx";
+import MyOrders from "../DashBoard/CustomerDashBoard/CustomerPages/MyOrders/MyOrders.jsx";
+import MyWishList from "../DashBoard/CustomerDashBoard/CustomerPages/MyWishList/MyWishList.jsx";
+import MyProfile from "../DashBoard/CustomerDashBoard/CustomerPages/MyProfile/MyProfile.jsx";
+import AddressBook from "../DashBoard/CustomerDashBoard/CustomerPages/AddressBook/AddressBook.jsx";
+import Support from "../DashBoard/CustomerDashBoard/CustomerPages/Support/Support.jsx";
+// import useUser from "../Hooks/CustomHooks/UseUser/useUser.jsx";
 // import DashBoardLayout from '../Layout/DashBoardLayout/DashBoardLayout.jsx'
 
-function DashboardRedirect() {
-  const { user, loading } = useAuth();
-  const{userInfo}=useUser();
-  console.log(userInfo,userInfo.email)
 
-  if (loading) return <div className="p-10 text-center">Loading...</div>;
-
-  if (!user) return <Navigate to="/login" replace />;
-
-  const dashboardPaths = {
-    customer: "/dashboard/customer",
-    admin: "/dashboard/admin",
-    deliveryman: "/dashboard/deliveryman",
-  };
-
-  return <Navigate to={dashboardPaths[user?.role] || "/"} replace />;
-}
 
 function Router() {
   return (
@@ -44,7 +46,7 @@ function Router() {
         <Route path="/trackOrder" element={<TrackOrder></TrackOrder>} />
         <Route path="/contact" element={<Contact></Contact>} />
         <Route path="/aboutUs" element={<About></About>} />
-        <Route path="/dashBoard" element={<DashBoard></DashBoard>} />
+        {/* <Route path="/dashBoard" element={<DashBoard></DashBoard>} /> */}
       </Route>
       {/* auth routers */}
       <Route>
@@ -57,19 +59,35 @@ function Router() {
       <Route path="/dashboard" element={<DashboardRedirect />} />
 
       {/* Customer Dashboard */}
-      <Route element={<RoleProtectedRoute allowedRoles={["customer"]} />}>
-        <Route path="/dashboard/customer" element={<CustomerDashBoard />} />
-      </Route>
+      
+        <Route path="/dashboard/customer" element={<CustomerProtectedRoute><CustomerDashBoard /></CustomerProtectedRoute>} >
+          <Route path="/dashboard/customer/customerHome" element={<CustomerHome></CustomerHome>} />
+          <Route path="/dashboard/customer/myOrders" element={<MyOrders></MyOrders>} />
+          <Route path="/dashboard/customer/myWishlist" element={<MyWishList></MyWishList>} />
+          <Route path="/dashboard/customer/myProfile" element={<MyProfile></MyProfile>} />
+          <Route path="/dashboard/customer/addressBook" element={<AddressBook></AddressBook>} />
+          <Route path="/dashboard/customer/support" element={<Support></Support>} />
+        </Route>
+      
+      
 
       {/* Admin Dashboard */}
-      <Route element={<RoleProtectedRoute allowedRoles={["admin"]} />}>
-        <Route path="/dashboard/admin" element={<AdminDashBoard />} />
-      </Route>
+      
+        <Route path="/dashboard/admin" element={<AdminProtectedRoute><AdminDashBoard /></AdminProtectedRoute>} >
+          <Route path="/dashboard/admin/adminHome" element={<AdminHome></AdminHome>} />
+          <Route path="/dashboard/admin/manageProducts" element={<ManageProducts></ManageProducts>} />
+          <Route path="/dashboard/admin/manageOrders" element={<ManageOrders></ManageOrders>} />
+          <Route path="/dashboard/admin/manageUsers" element={<ManageUsers></ManageUsers>} />
+          <Route path="/dashboard/admin/manageDelivery" element={<ManageDelivery></ManageDelivery>} />
+          <Route path="/dashboard/admin/reports" element={<Reports></Reports>} />
+          <Route path="/dashboard/admin/settings" element={<Setting></Setting>} />
+        </Route>
+      
 
       {/* Deliveryman Dashboard */}
-      <Route element={<RoleProtectedRoute allowedRoles={["deliveryman"]} />}>
-        <Route path="/dashboard/deliveryman" element={<DeliveryManDashBoard />} />
-      </Route>
+      
+        <Route path="/dashboard/deliveryman" element={<DeliverymanProtectedRoute><DeliveryManDashBoard /></DeliverymanProtectedRoute>} />
+      
 
       {/* Not Found */}
       <Route path="*" element={<Navigate to="/" replace />} />

@@ -33,10 +33,10 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  const userProfileUpdate = (name, phone) => {
+  const userProfileUpdate = (name) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
-      phoneNumber: phone
+      
     });
   };
 

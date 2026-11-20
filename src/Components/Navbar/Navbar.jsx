@@ -27,8 +27,8 @@ const Navbar = () => {
 
   const { user, userLogOut } = useAuth();
   console.log(user?.email);
-  const {userInfo} = useUser();
-  console.log(userInfo);
+  // const {userInfo} = useUser();
+  // console.log(userInfo?.role);
 
   const menuItem = (
     <>
