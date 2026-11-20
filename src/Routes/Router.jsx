@@ -25,13 +25,22 @@ import ManageOrders from "../DashBoard/AdminDashBoard/AdminPages/ManageOrders/Ma
 import ManageUsers from "../DashBoard/AdminDashBoard/AdminPages/ManageUsers/ManageUsers.jsx";
 import ManageDelivery from "../DashBoard/AdminDashBoard/AdminPages/ManageDelivery/ManageDelivery.jsx";
 import Reports from "../DashBoard/AdminDashBoard/AdminPages/Reports/Reports.jsx";
-import Setting from "../DashBoard/AdminDashBoard/AdminPages/Setting/Setting.jsx";
+import AdminSetting from "../DashBoard/AdminDashBoard/AdminPages/Setting/AdminSetting.jsx";
 import CustomerHome from "../DashBoard/CustomerDashBoard/CustomerPages/CustomerHome/CustomerHome.jsx";
 import MyOrders from "../DashBoard/CustomerDashBoard/CustomerPages/MyOrders/MyOrders.jsx";
 import MyWishList from "../DashBoard/CustomerDashBoard/CustomerPages/MyWishList/MyWishList.jsx";
 import MyProfile from "../DashBoard/CustomerDashBoard/CustomerPages/MyProfile/MyProfile.jsx";
 import AddressBook from "../DashBoard/CustomerDashBoard/CustomerPages/AddressBook/AddressBook.jsx";
 import Support from "../DashBoard/CustomerDashBoard/CustomerPages/Support/Support.jsx";
+import DeliverymanHome from "../DashBoard/DeliveryManDashBoard/DeliverManPages/DeliveryManHome/DeliveryManHome.jsx";
+import MyDeliveries from "../DashBoard/DeliveryManDashBoard/DeliverManPages/MyDeliveries/MyDeliveries.jsx";
+import Earnings from "../DashBoard/DeliveryManDashBoard/DeliverManPages/Earnings/Earnings.jsx";
+import DeliveryProfile from "../DashBoard/DeliveryManDashBoard/DeliverManPages/Profile/DeliveryProfile.jsx";
+import DeliverySupport from "../DashBoard/DeliveryManDashBoard/DeliverManPages/Support/DeliverySupport.jsx";
+import ManageDeliverymen from "../DashBoard/AdminDashBoard/AdminPages/ManageDeliveryMan/ManageDeliveryMen.jsx";
+import ManageCustomers from "../DashBoard/AdminDashBoard/AdminPages/ManageCustomer/ManageCutomer.jsx";
+import Payments from "../DashBoard/AdminDashBoard/AdminPages/Payments/Payments.jsx";
+import ManageCategories from "../DashBoard/AdminDashBoard/AdminPages/ManageCategories/ManageCategories.jsx";
 // import useUser from "../Hooks/CustomHooks/UseUser/useUser.jsx";
 // import DashBoardLayout from '../Layout/DashBoardLayout/DashBoardLayout.jsx'
 
@@ -78,15 +87,25 @@ function Router() {
           <Route path="/dashboard/admin/manageProducts" element={<ManageProducts></ManageProducts>} />
           <Route path="/dashboard/admin/manageOrders" element={<ManageOrders></ManageOrders>} />
           <Route path="/dashboard/admin/manageUsers" element={<ManageUsers></ManageUsers>} />
+          <Route path="/dashboard/admin/manageCustomers" element={<ManageCustomers></ManageCustomers>} />
+          <Route path="/dashboard/admin/manageCategories" element={<ManageCategories></ManageCategories>} />
           <Route path="/dashboard/admin/manageDelivery" element={<ManageDelivery></ManageDelivery>} />
+          <Route path="/dashboard/admin/manageDeliveryMen" element={<ManageDeliverymen></ManageDeliverymen>} />
           <Route path="/dashboard/admin/reports" element={<Reports></Reports>} />
-          <Route path="/dashboard/admin/settings" element={<Setting></Setting>} />
+          <Route path="/dashboard/admin/payments" element={<Payments></Payments>} />
+          <Route path="/dashboard/admin/settings" element={<AdminSetting></AdminSetting>} />
         </Route>
       
 
       {/* Deliveryman Dashboard */}
       
-        <Route path="/dashboard/deliveryman" element={<DeliverymanProtectedRoute><DeliveryManDashBoard /></DeliverymanProtectedRoute>} />
+        <Route path="/dashboard/deliveryman" element={<DeliverymanProtectedRoute><DeliveryManDashBoard /></DeliverymanProtectedRoute>} >
+          <Route path="/dashboard/deliveryman/deliverymanHome" element={<DeliverymanHome></DeliverymanHome>} />
+          <Route path="/dashboard/deliveryman/myDeliveries" element={<MyDeliveries></MyDeliveries>} />
+          <Route path="/dashboard/deliveryman/earnings" element={<Earnings></Earnings>} />
+          <Route path="/dashboard/deliveryman/profile" element={<DeliveryProfile></DeliveryProfile>} />
+          <Route path="/dashboard/deliveryman/support" element={<DeliverySupport></DeliverySupport>} />
+        </Route>
       
 
       {/* Not Found */}

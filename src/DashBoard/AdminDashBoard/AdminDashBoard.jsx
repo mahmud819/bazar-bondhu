@@ -29,6 +29,7 @@ import {
   Bell,
   ChevronDown,
   UserRound,
+  HomeIcon,
 } from "lucide-react";
 
 import {
@@ -39,6 +40,8 @@ import {
 
 // Import your logo
 import LogoImage from "../../assets/Logo/logo.png";
+import { BiCategory } from "react-icons/bi";
+import { RiSecurePaymentFill } from "react-icons/ri";
 
 const AdminDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -69,8 +72,23 @@ const AdminDashboard = () => {
       icon: Users,
     },
     {
+      name: "Manage Customers",
+      path: "/dashboard/admin/manageCustomers",
+      icon: Users,
+    },
+    {
+      name: "Manage Categories",
+      path: "/dashboard/admin/manageCategories",
+      icon: BiCategory,
+    },
+    {
       name: "Manage Delivery",
       path: "/dashboard/admin/manageDelivery",
+      icon: Truck,
+    },
+    {
+      name: "Manage Deliverymen",
+      path: "/dashboard/admin/manageDeliveryMen",
       icon: Truck,
     },
     {
@@ -79,9 +97,19 @@ const AdminDashboard = () => {
       icon: ChartNoAxesCombined,
     },
     {
+      name: "Payments",
+      path: "/dashboard/admin/payments",
+      icon: RiSecurePaymentFill,
+    },
+    {
       name: "Settings",
       path: "/dashboard/admin/settings",
       icon: Settings,
+    },
+    {
+      name: "Go Main Page",
+      path: "/",
+      icon: HomeIcon,
     },
   ];
 

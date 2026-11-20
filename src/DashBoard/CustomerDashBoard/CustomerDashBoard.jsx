@@ -14,6 +14,7 @@ import {
   Search,
   Bell,
   ChevronDown,
+  HomeIcon,
 } from "lucide-react";
 
 import {
@@ -61,6 +62,11 @@ const CustomerDashboard = () => {
       name: "Support",
       path: "/dashboard/customer/support",
       icon: CircleHelp,
+    },
+    {
+      name: "Go Main Page",
+      path: "/",
+      icon: HomeIcon,
     },
   ];
 
