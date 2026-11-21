@@ -20,6 +20,7 @@ import WhyChooseUs from "./home/WhyChooseUs";
 import OrderCallToAction from "./home/OrderCallToAction";
 import SharedTitle from "../SharedComponents/SharedTitle/SharedTitle";
 import Reviews from "./home/Reviews";
+import Marquee from "../Components/Marquee/Marquee";
 
 const features = [
   {
@@ -72,6 +73,11 @@ export default function Home() {
 
           {/* Light overlay for text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-white/65 via-sky-100/20 to-transparent" />
+
+          {/* marquee section */}
+          <div>
+            <Marquee></Marquee>
+          </div>
 
           {/* Main content */}
           <section className="relative z-10 mx-auto flex flex-col min-h-screen  items-center gap-2 px-4 pb-0 sm:px-8 lg:flex-row lg:px-10 ">

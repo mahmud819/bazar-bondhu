@@ -4,3 +4,17 @@
     color:white;
     background-color: rgb(12, 156, 12);
 }
+@import "tailwindcss";
+
+@theme {
+  --animate-marquee: marquee 25s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
