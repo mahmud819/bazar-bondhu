@@ -15,6 +15,7 @@ import {
   CheckCircle2,
   Trash2,
 } from "lucide-react";
+import useAxiosPublic from "../../Hooks/CustomHooks/UseAxiosPublic/useAxiosPublic";
 
 // Product categories
 const categories = [
@@ -79,9 +80,13 @@ const deliveryFee = 40;
 
 export default function PlaceOrder() {
   const [address, setAddress] = useState("");
+  const [phoneNumber,setPhoneNumber] = useState("");
   const [deliveryTime, setDeliveryTime] = useState("");
   const [itemList, setItemList] = useState("");
   const [notes, setNotes] = useState("");
+
+  // axios 
+  const axiosPublic = useAxiosPublic();
 
   const [selectedCategory, setSelectedCategory] = useState("fresh");
   const [selectedProduct, setSelectedProduct] = useState("আলু");
@@ -130,16 +135,25 @@ export default function PlaceOrder() {
       return;
     }
 
-    const orderData = {
+    const commonOrderData = {
       address,
+      phoneNumber,
       deliveryTime,
       items: itemList,
       notes,
       deliveryFee,
     };
 
-    console.log("Order Details:", orderData);
+    console.log("Order Details:", commonOrderData);
 
+    // form data send in data base
+    axiosPublic.post('/commonOrders',commonOrderData)
+    .then(res=>{
+      console.log(res)
+    })
+    .catch(err=>{
+      console.log(err);
+    })
     setOrderMessage(
       "আপনার অর্ডারের তথ্য প্রস্তুত হয়েছে। অর্ডার গ্রহণের জন্য Backend সংযুক্ত করতে হবে।"
     );
@@ -223,8 +237,30 @@ export default function PlaceOrder() {
                 <input
                   type="text"
                   value={address}
+                  name="address"
                   onChange={(e) => setAddress(e.target.value)}
                   placeholder="যেমন: ১২৩, ধানমন্ডি, ঢাকা"
+                  required
+                  className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                />
+
+              </div>
+
+              {/* phone number */}
+
+              <div className="mb-6">
+
+                <label className="mb-3 flex items-center gap-2 font-bold text-slate-800">
+                  <MapPin className="text-blue-600" size={21} />
+                  Phone Number
+                </label>
+
+                <input
+                  type="text"
+                  value={phoneNumber}
+                  name="phoneNumber"
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  placeholder="+8801XXXXXXXXX"
                   required
                   className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
@@ -238,9 +274,10 @@ export default function PlaceOrder() {
                   <Clock3 className="text-blue-600" size={21} />
                   পছন্দের ডেলিভারি সময়
                 </label>
-
+                  {/* input 2 */}
                 <select
                   value={deliveryTime}
+                  name="selectedTime"
                   onChange={(e) => setDeliveryTime(e.target.value)}
                   required
                   className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
@@ -276,6 +313,7 @@ export default function PlaceOrder() {
 
                 <textarea
                   value={itemList}
+                  name="productList"
                   onChange={(e) => {
                     setItemList(e.target.value);
                     setOrderMessage("");
