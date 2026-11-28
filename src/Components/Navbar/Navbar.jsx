@@ -16,6 +16,7 @@ import { RiShoppingBag4Fill } from "react-icons/ri";
 import useAuth from "../../Hooks/CustomHooks/UseAuth/useAuth";
 import Swal from "sweetalert2";
 import useUser from "../../Hooks/CustomHooks/UseUser/useUser";
+import { GoListOrdered } from "react-icons/go";
 
 const Navbar = () => {
   const navLinkClass = ({ isActive }) =>
@@ -39,9 +40,15 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink className={navLinkClass} to="/order">
+        <NavLink className={navLinkClass} to="/placeOrder">
           <RiShoppingBag4Fill className="text-blue-800 text-xl " />
-          Order
+          Place Order
+        </NavLink>
+      </li>
+      <li>
+        <NavLink className={navLinkClass} to="/myOrder">
+          <GoListOrdered className="text-blue-800 text-xl " />
+          My Order
         </NavLink>
       </li>
       <li>
@@ -50,6 +57,7 @@ const Navbar = () => {
           Track Order
         </NavLink>
       </li>
+      
       {/* <li><NavLink to='/about'> <Info className="text-blue-800 text-xl"/>About</NavLink></li> */}
       <li>
         <NavLink className={navLinkClass} to="/contact">

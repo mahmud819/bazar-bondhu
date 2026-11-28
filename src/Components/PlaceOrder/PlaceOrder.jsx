@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import {
   Carrot,
@@ -66,13 +65,7 @@ const categories = [
     id: "household",
     title: "ঘরোয়া পণ্য",
     icon: SprayCan,
-    products: [
-      "ডিটারজেন্ট",
-      "সাবান",
-      "ডিশওয়াশ",
-      "টিস্যু",
-      "টয়লেট ক্লিনার",
-    ],
+    products: ["ডিটারজেন্ট", "সাবান", "ডিশওয়াশ", "টিস্যু", "টয়লেট ক্লিনার"],
   },
 ];
 
@@ -80,12 +73,12 @@ const deliveryFee = 40;
 
 export default function PlaceOrder() {
   const [address, setAddress] = useState("");
-  const [phoneNumber,setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [deliveryTime, setDeliveryTime] = useState("");
   const [itemList, setItemList] = useState("");
   const [notes, setNotes] = useState("");
 
-  // axios 
+  // axios
   const axiosPublic = useAxiosPublic();
 
   const [selectedCategory, setSelectedCategory] = useState("fresh");
@@ -96,7 +89,7 @@ export default function PlaceOrder() {
 
   // Selected category
   const activeCategory = categories.find(
-    (category) => category.id === selectedCategory
+    (category) => category.id === selectedCategory,
   );
 
   // Count requested item lines
@@ -111,9 +104,7 @@ export default function PlaceOrder() {
     const newItem = `${selectedProduct} × ${quantity}`;
 
     setItemList((previous) =>
-      previous.trim()
-        ? `${previous}\n${newItem}`
-        : newItem
+      previous.trim() ? `${previous}\n${newItem}` : newItem,
     );
 
     setQuantity(1);
@@ -147,26 +138,55 @@ export default function PlaceOrder() {
     console.log("Order Details:", commonOrderData);
 
     // form data send in data base
-    axiosPublic.post('/commonOrders',commonOrderData)
-    .then(res=>{
-      console.log(res)
-    })
-    .catch(err=>{
-      console.log(err);
-    })
+    axiosPublic
+      .post("/commonOrders", commonOrderData)
+      .then((res) => {
+        console.log(res);
+
+        alert('order place success')
+        // order id shows and save in local storage for place order man
+
+        if (res.data.success) {
+          const { shortOrderId, trackingToken } = res.data;
+
+          // Get previously saved orders
+          const savedOrders = JSON.parse(
+            localStorage.getItem("bazarBondhuOrders") || "[]",
+          );
+
+          // Save new order
+          const updatedOrders = [
+            ...savedOrders,
+            {
+              shortOrderId,
+              trackingToken,
+            },
+          ];
+
+          localStorage.setItem(
+            "bazarBondhuOrders",
+            JSON.stringify(updatedOrders),
+          );
+
+          //! should be deleted after checking
+          console.log(shortOrderId,`token:${trackingToken}`)
+          // Show order confirmation
+          alert(`Your order ID is ${shortOrderId}`);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     setOrderMessage(
-      "আপনার অর্ডারের তথ্য প্রস্তুত হয়েছে। অর্ডার গ্রহণের জন্য Backend সংযুক্ত করতে হবে।"
+      "আপনার অর্ডারের তথ্য প্রস্তুত হয়েছে। অর্ডার গ্রহণের জন্য Backend সংযুক্ত করতে হবে।",
     );
   };
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 px-4 py-10 sm:px-6 lg:px-8">
-
       <div className="mx-auto max-w-7xl">
-
         {/* Page Heading */}
         <div className="mb-9 text-center">
-
           <div className="mb-3 flex items-center justify-center gap-4">
             <span className="h-0.5 w-12 bg-green-600" />
 
@@ -184,12 +204,10 @@ export default function PlaceOrder() {
           <p className="mt-3 text-sm text-slate-600 sm:text-base">
             আপনার প্রয়োজনীয় পণ্য অর্ডার করুন সহজেই
           </p>
-
         </div>
 
         {/* Product Categories */}
         <div className="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-
           {categories.map((category) => {
             const Icon = category.icon;
 
@@ -215,20 +233,15 @@ export default function PlaceOrder() {
               </button>
             );
           })}
-
         </div>
 
         {/* Main Order Layout */}
         <form onSubmit={handleSubmit}>
-
           <div className="grid items-start gap-6 lg:grid-cols-3">
-
             {/* Left Side - Order Form */}
             <div className="rounded-3xl border border-green-200 bg-white p-5 shadow-sm sm:p-7 lg:col-span-2">
-
               {/* Delivery Address */}
               <div className="mb-6">
-
                 <label className="mb-3 flex items-center gap-2 font-bold text-slate-800">
                   <MapPin className="text-blue-600" size={21} />
                   ডেলিভারি ঠিকানা
@@ -243,13 +256,11 @@ export default function PlaceOrder() {
                   required
                   className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
-
               </div>
 
               {/* phone number */}
 
               <div className="mb-6">
-
                 <label className="mb-3 flex items-center gap-2 font-bold text-slate-800">
                   <MapPin className="text-blue-600" size={21} />
                   Phone Number
@@ -264,17 +275,15 @@ export default function PlaceOrder() {
                   required
                   className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
-
               </div>
 
               {/* Delivery Time */}
               <div className="mb-6">
-
                 <label className="mb-3 flex items-center gap-2 font-bold text-slate-800">
                   <Clock3 className="text-blue-600" size={21} />
                   পছন্দের ডেলিভারি সময়
                 </label>
-                  {/* input 2 */}
+                {/* input 2 */}
                 <select
                   value={deliveryTime}
                   name="selectedTime"
@@ -287,12 +296,10 @@ export default function PlaceOrder() {
                   <option value="Afternoon">দুপুর (১২টা - ৪টা)</option>
                   <option value="Evening">বিকাল (৪টা - ৮টা)</option>
                 </select>
-
               </div>
 
               {/* Product List */}
               <div className="mb-6">
-
                 <div className="mb-3 flex items-center justify-between gap-2">
                   <label className="flex items-center gap-2 font-bold text-slate-800">
                     <List className="text-blue-600" size={21} />
@@ -326,13 +333,11 @@ export default function PlaceOrder() {
 
                 {/* Add Product */}
                 <div className="mt-4">
-
                   <label className="mb-3 block text-sm font-bold text-slate-700">
                     পণ্য যোগ করুন (ঐচ্ছিক)
                   </label>
 
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_auto_auto]">
-
                     <select
                       value={selectedProduct}
                       onChange={(e) => setSelectedProduct(e.target.value)}
@@ -347,12 +352,9 @@ export default function PlaceOrder() {
 
                     {/* Quantity */}
                     <div className="flex items-center justify-center gap-4 rounded-xl border border-slate-300 px-3">
-
                       <button
                         type="button"
-                        onClick={() =>
-                          setQuantity((q) => Math.max(1, q - 1))
-                        }
+                        onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                         className="text-blue-700"
                         aria-label="Decrease quantity"
                       >
@@ -365,15 +367,12 @@ export default function PlaceOrder() {
 
                       <button
                         type="button"
-                        onClick={() =>
-                          setQuantity((q) => Math.min(99, q + 1))
-                        }
+                        onClick={() => setQuantity((q) => Math.min(99, q + 1))}
                         className="text-blue-700"
                         aria-label="Increase quantity"
                       >
                         <Plus size={17} />
                       </button>
-
                     </div>
 
                     <button
@@ -384,15 +383,12 @@ export default function PlaceOrder() {
                       <Plus size={18} />
                       যোগ করুন
                     </button>
-
                   </div>
                 </div>
-
               </div>
 
               {/* Additional Notes */}
               <div>
-
                 <label className="mb-3 flex items-center gap-2 font-bold text-slate-800">
                   <MessageSquare className="text-blue-600" size={21} />
                   অতিরিক্ত নোট (ঐচ্ছিক)
@@ -405,14 +401,11 @@ export default function PlaceOrder() {
                   rows={2}
                   className="w-full resize-y rounded-xl border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 />
-
               </div>
-
             </div>
 
             {/* Right Side - Order Summary */}
             <aside className="rounded-3xl border border-green-200 bg-gradient-to-br from-green-50 to-white p-5 shadow-sm sm:p-6">
-
               <h2 className="mb-6 flex items-center gap-3 text-xl font-extrabold text-slate-900">
                 <ShoppingCart className="text-green-700" size={26} />
                 অর্ডার সামারি
@@ -421,17 +414,13 @@ export default function PlaceOrder() {
               {/* Items Count */}
               <div className="flex items-center justify-between border-b border-green-100 py-4 text-sm">
                 <span className="text-slate-700">মোট পণ্যের তালিকা:</span>
-                <span className="font-bold text-slate-900">
-                  {itemCount} টি
-                </span>
+                <span className="font-bold text-slate-900">{itemCount} টি</span>
               </div>
 
               {/* Subtotal */}
               <div className="flex items-center justify-between border-b border-green-100 py-4 text-sm">
                 <span className="text-slate-700">পণ্যের মূল্য:</span>
-                <span className="font-semibold text-slate-900">
-                  বাজার শেষে
-                </span>
+                <span className="font-semibold text-slate-900">বাজার শেষে</span>
               </div>
 
               {/* Delivery Fee */}
@@ -444,9 +433,7 @@ export default function PlaceOrder() {
 
               {/* Total */}
               <div className="mt-5 flex items-center justify-between rounded-xl bg-blue-100 px-4 py-4">
-                <span className="font-bold text-blue-950">
-                  প্রাথমিক চার্জ:
-                </span>
+                <span className="font-bold text-blue-950">প্রাথমিক চার্জ:</span>
 
                 <span className="text-2xl font-extrabold text-blue-800">
                   ৳ {deliveryFee}
@@ -454,8 +441,8 @@ export default function PlaceOrder() {
               </div>
 
               <p className="mt-3 text-xs leading-5 text-slate-500">
-                পণ্যের মূল্য বাজার থেকে কেনাকাটার পর নির্ধারিত হবে।
-                ডেলিভারি চার্জটি নমুনা হিসেবে ৳৪০ রাখা হয়েছে।
+                পণ্যের মূল্য বাজার থেকে কেনাকাটার পর নির্ধারিত হবে। ডেলিভারি
+                চার্জটি নমুনা হিসেবে ৳৪০ রাখা হয়েছে।
               </p>
 
               {/* Submit Button */}
@@ -476,15 +463,10 @@ export default function PlaceOrder() {
                   {orderMessage}
                 </p>
               )}
-
             </aside>
-
           </div>
-
         </form>
-
       </div>
-
     </main>
   );
 }

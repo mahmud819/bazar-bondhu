@@ -41,6 +41,8 @@ import ManageDeliverymen from "../DashBoard/AdminDashBoard/AdminPages/ManageDeli
 import ManageCustomers from "../DashBoard/AdminDashBoard/AdminPages/ManageCustomer/ManageCutomer.jsx";
 import Payments from "../DashBoard/AdminDashBoard/AdminPages/Payments/Payments.jsx";
 import ManageCategories from "../DashBoard/AdminDashBoard/AdminPages/ManageCategories/ManageCategories.jsx";
+import Orders from "../Pages/MyOrder/Orders.jsx";
+import FlowOrder from "../Pages/TrackOrder/FlowOrder.jsx";
 // import useUser from "../Hooks/CustomHooks/UseUser/useUser.jsx";
 // import DashBoardLayout from '../Layout/DashBoardLayout/DashBoardLayout.jsx'
 
@@ -51,8 +53,10 @@ function Router() {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
-        <Route path="/order" element={<PlaceOrder></PlaceOrder>} />
+        <Route path="/placeOrder" element={<PlaceOrder></PlaceOrder>} />
+        <Route path="/myOrder" element={<Orders></Orders>} />
         <Route path="/trackOrder" element={<TrackOrder></TrackOrder>} />
+        {/* <Route path="/flowOrder" element={<FlowOrder></FlowOrder>} /> */}
         <Route path="/contact" element={<Contact></Contact>} />
         <Route path="/aboutUs" element={<About></About>} />
         {/* <Route path="/dashBoard" element={<DashBoard></DashBoard>} /> */}

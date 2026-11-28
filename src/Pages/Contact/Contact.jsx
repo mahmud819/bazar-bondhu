@@ -10,6 +10,7 @@ import {
   Headset,
 } from "lucide-react";
 import { FaFacebook, FaInstagramSquare } from "react-icons/fa";
+import useAxiosPublic from "../../Hooks/CustomHooks/UseAxiosPublic/useAxiosPublic";
 
 const contactInfo = [
   {
@@ -56,6 +57,9 @@ export default function Contact() {
 
   const [feedback, setFeedback] = useState("");
 
+  // axios for api
+  const axiosPublic = useAxiosPublic();
+
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -74,9 +78,18 @@ export default function Contact() {
 
     console.log("Contact Information:", formData);
 
-    setFeedback(
-      "ধন্যবাদ! আপনার বার্তাটি প্রস্তুত হয়েছে। Backend সংযুক্ত করলে এটি পাঠানো যাবে।"
-    );
+    // axios post api
+    axiosPublic.post('/customer-complaint',formData)
+    .then((res)=>{
+      console.log(res);
+      alert('your compliant accepted')
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+    // setFeedback(
+    //   "ধন্যবাদ! আপনার বার্তাটি প্রস্তুত হয়েছে। Backend সংযুক্ত করলে এটি পাঠানো যাবে।"
+    // );
 
     setFormData({
       name: "",
